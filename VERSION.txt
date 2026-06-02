@@ -1,2 +1,5 @@
-CEN Patriarch Matrix - Fixed Footer v2
-하단 핵심흐름+메뉴 고정 레이어 분리
+CEN Exodus-Wilderness Matrix v1.6
+- 상단 블러 헤더 확장 적용
+- 배경 이미지 원본 비율 유지
+- 제목부 여백 확보
+- 버튼/핫스팟 위치 재보정
