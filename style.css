@@ -39,3 +39,19 @@
   .btnGroup{gap:4px}.btnGroup button{font-size:7.8px;height:30px;padding:0 3px;border-radius:11px}.g3 button{font-size:6.6px;height:28px}.g1{width:37%;}.g2{width:50%;}.g3{width:57%;}.g4{width:45%;}.g5{width:42%;}
   .flowTitle{font-size:13.5px}.flowItems{font-size:11px}.navGrid{height:78px}.navGrid button{font-size:10.5px}.navGrid i{font-size:23px}
 }
+
+/* v1.3 refinements: background timeline baked as clean straight line; lower scene bands expanded */
+.stage{aspect-ratio:1024/1636;}
+.stage::before,.stage::after{display:none !important;}
+/* recalibrated hotspots for the taller 4th/5th background bands */
+.e1{top:2.4%;height:18.3%;}
+.e2{top:20.9%;height:18.0%;}
+.e3{top:39.0%;height:19.0%;}
+.e4{top:58.3%;height:21.0%;}
+.e5{top:79.4%;height:17.6%;}
+/* button rows moved to match the taller lower panels */
+.g1{top:19.0%;width:34%;right:3.2%;}
+.g2{top:35.4%;width:48%;right:2.0%;}
+.g3{top:53.0%;width:55%;right:1.4%;}
+.g4{top:72.2%;width:43%;right:2.4%;}
+.g5{top:88.0%;width:40%;right:2.6%;}

@@ -1,5 +1,4 @@
-CEN Exodus-Wilderness Matrix v1.2
-- Preferred horizontal-row button layout
-- Original-ratio background to reduce distortion
-- CSS straight timeline overlay
-- Larger fixed footer text/icons
+CEN Exodus-Wilderness Matrix v1.3
+- 타임라인을 배경 상징 아래 기준의 일직선형으로 정리
+- 광야훈련/모압평지 하단 핵심사건 영역 세로 비율 확대
+- 버튼 위치 1차 재보정
