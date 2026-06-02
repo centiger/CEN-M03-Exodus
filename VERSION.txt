@@ -1,4 +1,2 @@
-v1.5
-- 첫 번째 패널 세로 여백 확대
-- 버튼 위치 재정렬
-- 제목부 간격 조정
+CEN Patriarch Matrix - Fixed Footer v2
+하단 핵심흐름+메뉴 고정 레이어 분리
