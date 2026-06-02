@@ -74,3 +74,21 @@
 .g3{top:52.6%;width:55%;right:1.4%;}
 .g4{top:69.8%;width:43%;right:2.4%;}
 .g5{top:85.6%;width:40%;right:2.6%;}
+
+/* v1.5: first scene gets more vertical breathing room; button rows re-aligned */
+.stage{aspect-ratio:1024/1588 !important;}
+.bg{width:100%;height:100%;object-fit:cover !important;}
+.titleLayer{top:1.4%;left:25.5%;right:3%;}
+.titleLayer h1{font-size:clamp(23px,6.3vw,38px);line-height:1.02;}
+.titleLayer p{margin-top:5px;font-size:clamp(10px,2.7vw,16px);}
+.e1{top:2.3%;height:21.8%;}
+.e2{top:24.5%;height:18.7%;}
+.e3{top:43.3%;height:18.2%;}
+.e4{top:61.4%;height:18.2%;}
+.e5{top:79.7%;height:16.4%;}
+.g1{top:20.1%;width:35%;right:3.0%;}
+.g2{top:37.3%;width:49%;right:2.0%;}
+.g3{top:54.2%;width:56%;right:1.2%;gap:5px;}
+.g4{top:70.8%;width:43%;right:2.4%;}
+.g5{top:86.1%;width:41%;right:2.5%;}
+.g3 button{font-size:clamp(7px,1.78vw,10.2px);padding:0 3px;}

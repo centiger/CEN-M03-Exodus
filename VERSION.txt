@@ -1,5 +1,4 @@
-CEN Exodus-Wilderness Matrix v1.4
-- user-approved 1024x1536 main background applied
-- no forced vertical stretch; original-ratio background preserved
-- horizontal button-row layout retained for easier placement
-- timeline handled by approved background image; CSS timeline disabled
+v1.5
+- 첫 번째 패널 세로 여백 확대
+- 버튼 위치 재정렬
+- 제목부 간격 조정
