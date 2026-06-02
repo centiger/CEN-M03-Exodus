@@ -1,6 +1,5 @@
-CEN Exodus-Wilderness Matrix v1.1
-- first design layout tuning
-- straight CSS timeline
-- taller background stage
-- larger fixed footer text
-- button positions revised
+CEN Exodus-Wilderness Matrix v1.2
+- Preferred horizontal-row button layout
+- Original-ratio background to reduce distortion
+- CSS straight timeline overlay
+- Larger fixed footer text/icons
