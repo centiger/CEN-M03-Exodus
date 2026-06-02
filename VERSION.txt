@@ -1,4 +1,4 @@
-CEN Exodus-Wilderness Matrix v1.7
-- Original approved background restored
-- Top blurred black header retained
-- No vertical distortion of timeline symbols
+CEN Exodus-Wilderness Matrix v1.8
+- top header fade refined
+- title breathing room improved
+- button rows detail-adjusted

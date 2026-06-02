@@ -138,35 +138,3 @@
 .g3{top:55.22%;width:56%;right:1.2%;gap:5px;}
 .g4{top:71.47%;width:43%;right:2.4%;}
 .g5{top:86.40%;width:41%;right:2.5%;}
-
-/* v1.8: smoother black-header-to-image fade and refined button placement */
-:root{--top-pad:6.55%;}
-.stage{aspect-ratio:1024/1644 !important;background:#071017;}
-.bg{position:absolute;left:0;top:var(--top-pad);width:100%;height:auto !important;object-fit:contain !important;object-position:top center !important;}
-.stage::before{display:block !important;content:"";position:absolute;z-index:5;left:0;right:0;top:0;height:calc(var(--top-pad) + 2.4%);background:linear-gradient(180deg,rgba(0,0,0,.98) 0%,rgba(3,8,13,.94) 44%,rgba(3,8,13,.76) 70%,rgba(3,8,13,.28) 91%,rgba(3,8,13,0) 100%);box-shadow:0 12px 30px rgba(0,0,0,.48);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);pointer-events:none;}
-.stage::after{display:block !important;content:"";position:absolute;z-index:6;left:0;right:0;top:calc(var(--top-pad) - 1.2%);height:6.2%;background:linear-gradient(180deg,rgba(7,16,23,.72) 0%,rgba(7,16,23,.34) 42%,rgba(7,16,23,0) 100%);pointer-events:none;}
-.titleLayer{z-index:12;top:1.35%;left:24%;right:3%;}
-.titleLayer h1{font-size:clamp(22px,6.0vw,37px);line-height:1.02;}
-.titleLayer p{margin-top:5px;font-size:clamp(9.8px,2.55vw,15px);}
-
-/* hotspots adjusted for the slightly taller header */
-.e1{top:8.75%;height:17.05%;}
-.e2{top:25.70%;height:17.05%;}
-.e3{top:42.83%;height:17.48%;}
-.e4{top:60.35%;height:16.95%;}
-.e5{top:77.30%;height:15.75%;}
-
-/* Button row tuning: keep rows horizontal, reduce crowding, avoid key figures */
-.btnGroup button{height:clamp(30px,7.0vw,43px);font-size:clamp(8px,2.05vw,11.7px);border-radius:13px;}
-.g1{top:24.10%;width:37%;right:2.6%;}
-.g2{top:39.45%;width:49.5%;right:1.7%;}
-.g3{top:55.85%;width:57.5%;right:.8%;gap:4px;}
-.g3 button{font-size:clamp(6.9px,1.72vw,10px);height:clamp(28px,6.3vw,39px);padding:0 2px;}
-.g4{top:71.90%;width:45%;right:1.8%;}
-.g5{top:85.95%;width:43%;right:1.5%;}
-@media(max-width:390px){
-  .titleLayer{top:1.22%;left:24%;right:2.4%;}
-  .titleLayer h1{font-size:clamp(21px,5.75vw,34px);}
-  .titleLayer p{font-size:clamp(9.2px,2.45vw,13.8px);}
-  .btnGroup{gap:4px}.btnGroup button{font-size:7.6px;height:30px;padding:0 3px;border-radius:11px}.g3 button{font-size:6.3px;height:28px}.g1{width:39%;}.g2{width:51%;}.g3{width:59%;}.g4{width:47%;}.g5{width:45%;}
-}
