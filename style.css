@@ -118,3 +118,23 @@
   .titleLayer h1{font-size:clamp(22px,6.1vw,35px)}
   .titleLayer p{font-size:clamp(9.5px,2.55vw,14px)}
 }
+
+/* v1.7: restore approved original 1024x1536 background, keep top blurred header without icon distortion */
+:root{--top-pad:5.535%;}
+.stage{aspect-ratio:1024/1626 !important;background:#071017;}
+.bg{position:absolute;left:0;top:var(--top-pad);width:100%;height:auto !important;object-fit:contain !important;object-position:top center !important;}
+.stage::before{display:block !important;content:"";position:absolute;z-index:5;left:0;right:0;top:0;height:var(--top-pad);background:linear-gradient(180deg,rgba(0,0,0,.95),rgba(4,9,14,.88) 58%,rgba(4,9,14,.55));box-shadow:0 10px 28px rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:none;}
+.stage::after{display:block !important;content:"";position:absolute;z-index:6;left:0;right:0;top:0;height:calc(var(--top-pad) + 4.2%);background:linear-gradient(180deg,rgba(0,0,0,.46),rgba(0,0,0,0));pointer-events:none;}
+.titleLayer{z-index:12;top:.76%;left:24%;right:3%;}
+.titleLayer h1{font-size:clamp(23px,6.25vw,38px);line-height:1.02;}
+.titleLayer p{margin-top:4px;font-size:clamp(9.8px,2.6vw,15px);}
+.e1{top:7.80%;height:17.38%;}
+.e2{top:25.09%;height:17.29%;}
+.e3{top:42.38%;height:17.66%;}
+.e4{top:60.14%;height:16.91%;}
+.e5{top:77.05%;height:15.87%;}
+.g1{top:23.48%;width:35%;right:3.0%;}
+.g2{top:38.79%;width:49%;right:2.0%;}
+.g3{top:55.22%;width:56%;right:1.2%;gap:5px;}
+.g4{top:71.47%;width:43%;right:2.4%;}
+.g5{top:86.40%;width:41%;right:2.5%;}

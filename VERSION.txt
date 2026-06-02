@@ -1,5 +1,4 @@
-CEN Exodus-Wilderness Matrix v1.6
-- 상단 블러 헤더 확장 적용
-- 배경 이미지 원본 비율 유지
-- 제목부 여백 확보
-- 버튼/핫스팟 위치 재보정
+CEN Exodus-Wilderness Matrix v1.7
+- Original approved background restored
+- Top blurred black header retained
+- No vertical distortion of timeline symbols
