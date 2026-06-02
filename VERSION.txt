@@ -1,4 +1,5 @@
-CEN Exodus-Wilderness Matrix v1.3
-- 타임라인을 배경 상징 아래 기준의 일직선형으로 정리
-- 광야훈련/모압평지 하단 핵심사건 영역 세로 비율 확대
-- 버튼 위치 1차 재보정
+CEN Exodus-Wilderness Matrix v1.4
+- user-approved 1024x1536 main background applied
+- no forced vertical stretch; original-ratio background preserved
+- horizontal button-row layout retained for easier placement
+- timeline handled by approved background image; CSS timeline disabled
