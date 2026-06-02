@@ -1,0 +1,5 @@
+CEN Exodus-Wilderness Matrix v1
+- Matrix v2 standard
+- Fixed footer
+- 5 integrated hubs
+- Replaceable PNG hub maps: hubs/assets/maps/*.png
