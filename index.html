@@ -1,84 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
-<title>출애굽·광야 Matrix</title>
-<link rel="manifest" href="manifest.webmanifest"/>
-<link rel="apple-touch-icon" href="icons/icon-192.png"/>
-<meta name="theme-color" content="#071017"/>
-<link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>출애굽·광야 매트릭스</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<div class="app">
-  <main class="phone main-content">
-    <section class="stage" aria-label="출애굽·광야 시대 Matrix">
-      <img class="bg" src="assets/exodus-wilderness-bg.png" alt="출애굽·광야 시대 배경"/>
 
-      <div class="titleLayer">
-        <h1>출애굽·광야 시대</h1>
-        <p>구속받은 백성, 언약의 백성으로 세워지다</p>
-      </div>
+    <div class="app-container">
+        <main class="main-content">
+            
+            <section class="matrix-section">
+                <div class="timeline-zone">
+                    <div class="node-circle active">1</div>
+                    <div class="node-text">애굽의 압제</div>
+                </div>
+                <div class="card-zone bg-section-1">
+                    <div class="card-desc">
+                        <h3>애굽의 압제</h3>
+                        <p>이스라엘 백성이 애굽에서 압제받으며 고통의 시간이 시작된다.</p>
+                    </div>
+                    <div class="button-group-bottom">
+                        <button class="btn btn-hub">애굽압제 허브</button>
+                        <button class="btn btn-sub">구원준비</button>
+                    </div>
+                </div>
+            </section>
 
-      <button class="hot event e1" onclick="goHub('oppression')" aria-label="애굽압제 허브"></button>
-      <button class="hot event e2" onclick="goHub('exodus')" aria-label="출애굽 허브"></button>
-      <button class="hot event e3" onclick="goHub('sinai')" aria-label="시내산 허브"></button>
-      <button class="hot event e4" onclick="goHub('wilderness')" aria-label="광야훈련 허브"></button>
-      <button class="hot event e5" onclick="goHub('moab')" aria-label="모압평지 허브"></button>
+            <section class="matrix-section">
+                <div class="timeline-zone">
+                    <div class="node-circle">2</div>
+                    <div class="node-text">출애굽</div>
+                </div>
+                <div class="card-zone bg-section-2">
+                    <div class="card-desc">
+                        <h3>출애굽</h3>
+                        <p>하나님이 강한 손과 큰 권능으로 이스라엘을 애굽에서 구원하신다.</p>
+                    </div>
+                    <div class="button-group-bottom">
+                        <button class="btn btn-hub">출애굽 허브</button>
+                        <button class="btn btn-sub">어린양의 흐름</button>
+                        <button class="btn btn-sub">연결탐험</button>
+                    </div>
+                </div>
+            </section>
 
-      <div class="btnGroup g1">
-        <button onclick="goHub('oppression')"><span class="bIcon">▥</span>애굽압제 허브</button>
-        <button onclick="openSheet('oppressionFlow')"><span class="bIcon">🤝</span>구원준비</button>
-      </div>
-      <div class="btnGroup g2">
-        <button onclick="goHub('exodus')"><span class="bIcon">🚶</span>출애굽 허브</button>
-        <button onclick="openSheet('lamb')"><span class="bIcon">🐑</span>어린양의 흐름</button>
-        <button onclick="openSheet('exodusFlow')"><span class="bIcon">⌖</span>연결탐험</button>
-      </div>
-      <div class="btnGroup g3 core">
-        <button onclick="goHub('sinai')"><span class="bIcon">⛰</span>시내산 허브</button>
-        <button onclick="openSheet('covenant')"><span class="bIcon">🤝</span>언약의 흐름</button>
-        <button onclick="openSheet('tabernacle')"><span class="bIcon">▥</span>성막의 흐름</button>
-        <button onclick="openSheet('priest')"><span class="bIcon">♟</span>제사장의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
-      </div>
-      <div class="btnGroup g4">
-        <button onclick="goHub('wilderness')"><span class="bIcon">🌿</span>광야훈련 허브</button>
-        <button onclick="openSheet('wildernessFlow')"><span class="bIcon">👣</span>광야의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
-      </div>
-      <div class="btnGroup g5">
-        <button onclick="goHub('moab')"><span class="bIcon">⛰</span>모압평지 허브</button>
-        <button onclick="openSheet('kingdom')"><span class="bIcon">♛</span>하나님나라의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
-      </div>
-    </section>
-  </main>
+            <section class="matrix-section">
+                <div class="timeline-zone">
+                    <div class="node-circle">3</div>
+                    <div class="node-text">시내산 언약</div>
+                </div>
+                <div class="card-zone bg-section-3">
+                    <div class="card-desc">
+                        <h3>시내산 언약</h3>
+                        <p>하나님이 시내산에서 이스라엘과 언약을 맺고 율법을 주신다.</p>
+                    </div>
+                    <div class="button-group-bottom">
+                        <button class="btn btn-hub">시내산 허브</button>
+                        <button class="btn btn-sub">언약의 흐름</button>
+                        <button class="btn btn-sub">성막의 흐름</button>
+                        <button class="btn btn-sub">제사장의 흐름</button>
+                        <button class="btn btn-sub">연결탐험</button>
+                    </div>
+                </div>
+            </section>
 
-  <nav class="fixedFooter" aria-label="출애굽·광야 하단 고정 메뉴">
-    <div class="flowBox">
-      <div class="flowTitle">출애굽·광야 핵심흐름</div>
-      <div class="flowItems">
-        <span>압제</span><b>›</b><span>출애굽</span><b>›</b><span>언약</span><b>›</b><span>광야</span><b>›</b><span>모압</span>
-      </div>
+            <section class="matrix-section">
+                <div class="timeline-zone">
+                    <div class="node-circle">4</div>
+                    <div class="node-text">광야 훈련</div>
+                </div>
+                <div class="card-zone bg-section-4">
+                    <div class="card-desc">
+                        <h3>광야 훈련</h3>
+                        <p>40년 동안 광야에서 하나님의 공급과 인도 속에 훈련받는다.</p>
+                    </div>
+                    <div class="button-group-bottom">
+                        <button class="btn btn-hub">광야훈련 허브</button>
+                        <button class="btn btn-sub">광야의 흐름</button>
+                        <button class="btn btn-sub">연결탐험</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="matrix-section">
+                <div class="timeline-zone">
+                    <div class="node-circle">5</div>
+                    <div class="node-text">모압 평지</div>
+                </div>
+                <div class="card-zone bg-section-5">
+                    <div class="card-desc">
+                        <h3>모압 평지</h3>
+                    </div>
+                    <div class="button-group-bottom">
+                        <button class="btn btn-hub">모압평지 허브</button>
+                        <button class="btn btn-sub">하나님나라의 흐름</button>
+                        <button class="btn btn-sub">연결탐험</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="app-footer">
+            <div class="core-flow-bar">
+                <h4>출애굽·광야 핵심흐름</h4>
+                <div class="flow-steps">
+                    <span>압제</span> &gt; <span>출애굽</span> &gt; <span>언약</span> &gt; <span>광야</span> &gt; <span>모압</span>
+                </div>
+            </div>
+            <nav class="bottom-gnb">
+                <a href="#" class="nav-item"><span class="icon">🏠</span><span>홈</span></a>
+                <a href="#" class="nav-item"><span class="icon">⚪</span><span>전체</span></a>
+                <a href="#" class="nav-item"><span class="icon">🔲</span><span>허브</span></a>
+                <a href="#" class="nav-item"><span class="icon">❮</span><span>이전</span></a>
+                <a href="#" class="nav-item active"><span class="icon">❯</span><span>정복시대</span></a>
+            </nav>
+        </footer>
     </div>
-    <div class="navGrid">
-      <button onclick="showToast('홈 연결 준비')"><i>⌂</i><span>홈</span></button>
-      <button onclick="showToast('전체 시대 Matrix 연결 준비')"><i>◎</i><span>전체</span></button>
-      <button onclick="openSheet('hubList')"><i>▣</i><span>허브</span></button>
-      <button onclick="showToast('족장시대 Matrix 연결 준비')"><i>‹</i><span>이전</span></button>
-      <button onclick="showToast('정복시대 Matrix 연결 준비')" class="next"><i>›</i><span>정복시대</span></button>
-    </div>
-  </nav>
-</div>
 
-<div class="sheetBack" id="backdrop"></div>
-<section class="sheet" id="sheet" aria-modal="true" role="dialog">
-  <div class="grab"></div><button class="close" id="close">×</button>
-  <h2 id="sheetTitle"></h2><div class="meta" id="sheetMeta"></div><p id="sheetBody"></p><div class="chips" id="chips"></div>
-</section>
-<div class="toast" id="toast"></div>
-
-<script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log('서비스 워커가 성공적으로 등록되었습니다.'))
+                .catch(err => console.error('서비스 워커 등록 실패:', err));
+        }
+    </script>
 </body>
 </html>
