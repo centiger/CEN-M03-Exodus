@@ -1,3 +1,4 @@
-CEN Exodus-Wilderness Matrix v1.19
-- Scroll bottom clamp: no excessive drag after Moab panel
-- Compact footer retained
+CEN Exodus-Wilderness Matrix v1.20
+- Buttons moved slightly lower based on marked screenshot
+- Background unchanged
+- Compact footer and controlled scroll retained

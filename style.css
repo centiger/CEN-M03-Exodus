@@ -552,3 +552,37 @@ body {
   .g4{ transform: translateY(clamp(28px, 8.2vw, 48px)) !important; }
   .g5{ transform: translateY(clamp(16px, 5.2vw, 32px)) !important; }
 }
+
+/* v1.20: final button desire pass from user marked screenshot
+   Background remains untouched. Move rows 1/2/4/5 a little lower while preserving row 3's safe position. */
+.g1{
+  transform: translateY(clamp(10px, 2.7vw, 18px)) !important;
+}
+.g2{
+  transform: translateY(clamp(42px, 10.4vw, 66px)) !important;
+}
+.g3{
+  top:55.38% !important;
+  transform: translateY(clamp(22px, 5.6vw, 36px)) !important;
+}
+.g4{
+  transform: translateY(clamp(48px, 12.0vw, 76px)) !important;
+}
+.g5{
+  transform: translateY(clamp(42px, 10.5vw, 68px)) !important;
+}
+/* translated buttons need a little breathing room, but not the huge scroll tail */
+.phone.main-content{
+  padding-bottom: 0 !important;
+}
+.stage{
+  margin-bottom: clamp(22px, 5.5vw, 34px) !important;
+}
+@media(max-width:430px){
+  .g1{transform:translateY(clamp(9px, 2.7vw, 16px)) !important;}
+  .g2{transform:translateY(clamp(40px, 10.7vw, 64px)) !important;}
+  .g3{transform:translateY(clamp(20px, 5.8vw, 34px)) !important;}
+  .g4{transform:translateY(clamp(46px, 12.3vw, 74px)) !important;}
+  .g5{transform:translateY(clamp(40px, 10.8vw, 66px)) !important;}
+  .stage{margin-bottom:clamp(20px, 5.8vw, 32px) !important;}
+}
