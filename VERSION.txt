@@ -1,6 +1,4 @@
-v1.15 / 2026-06-03
-- 사용자 제공 기준 코드의 button-group-bottom 방식에 맞춰 버튼을 각 사건 하단 영역으로 재배치
-- 2번/4번/5번 버튼을 표시된 하단 여백 위치로 강제 이동
-- 3번 시내산 버튼은 장막을 가리지 않도록 현 위치 유지
-- 투명 전체 핫스팟 pointer-events 비활성화로 메인화면 드래그/스크롤 방해 제거
-- 서비스워커 캐시명 v115로 변경
+CEN Exodus-Wilderness Matrix v1.16
+- Fixed main matrix drag/scroll by converting main screen into an independent vertical scroll pane above the fixed footer.
+- Disabled invisible event hotspot layers that could block touch scrolling.
+- Preserved visible button clicks and current background/button layout.

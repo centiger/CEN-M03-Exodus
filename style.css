@@ -349,3 +349,81 @@ body { touch-action: pan-y !important; }
   .g4{top:78.70% !important;right:.9% !important;width:49% !important;}
   .g5{top:93.35% !important;right:.7% !important;width:48% !important;}
 }
+
+/* v1.16: definitive main-screen scroll container fix
+   The visible matrix area now scrolls independently above the fixed footer. */
+html, body {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  background: #071017 !important;
+  overscroll-behavior: none !important;
+}
+body {
+  position: fixed !important;
+  inset: 0 !important;
+  touch-action: none !important;
+}
+.app {
+  position: fixed !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  background: #071017 !important;
+}
+.phone.main-content {
+  position: fixed !important;
+  left: 50% !important;
+  top: 0 !important;
+  bottom: calc(var(--footer-h) + env(safe-area-inset-bottom)) !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  max-width: 560px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 0 42px 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  background: #071017 !important;
+  scrollbar-width: none;
+}
+.phone.main-content::-webkit-scrollbar { display: none; }
+.stage {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-height: auto !important;
+  overflow: visible !important;
+  touch-action: pan-y !important;
+}
+.bg, .titleLayer, .btnGroup, .btnGroup button {
+  touch-action: pan-y !important;
+}
+.btnGroup button {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+.event.hot {
+  pointer-events: none !important;
+  display: none !important;
+}
+.fixedFooter {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  max-width: 560px !important;
+  z-index: 90 !important;
+  touch-action: manipulation !important;
+}
+.sheet, .sheetBack, .toast { touch-action: auto !important; }
