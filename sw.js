@@ -1,25 +1,5 @@
-const CACHE_NAME = 'exodus-matrix-v2';
-const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './style.css',
-  './manifest.json'
-];
-
-// 서비스 워커 설치 및 리소스 캐싱
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
-  );
-});
-
-// 네트워크 요청 가로채기 (오프라인 지원)
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
-});
+const CACHE='cen-exodus-wilderness-v111';
+const ASSETS=['./','./index.html','./style.css','./script.js','./manifest.webmanifest','./assets/exodus-wilderness-bg.png','./icons/icon-192.png','./icons/icon-512.png','./hubs/index.html','./hubs/js/app.js','./hubs/data/hubs.json'];
+self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).catch(()=>{}))});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('cen-exodus-wilderness-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy)).catch(()=>{});return r}).catch(()=>caches.match(e.request))));
