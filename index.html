@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<title>출애굽·광야 Matrix</title>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="apple-touch-icon" href="icons/icon-192.png"/>
+<meta name="theme-color" content="#071017"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="app">
+  <main class="phone main-content">
+    <section class="stage" aria-label="출애굽·광야 시대 Matrix">
+      <img class="bg" src="assets/exodus-wilderness-bg.png" alt="출애굽·광야 시대 배경"/>
+
+      <div class="titleLayer">
+        <h1>출애굽·광야 시대</h1>
+        <p>구속받은 백성, 언약의 백성으로 세워지다</p>
+      </div>
+
+      <button class="hot event e1" onclick="goHub('oppression')" aria-label="애굽압제 허브"></button>
+      <button class="hot event e2" onclick="goHub('exodus')" aria-label="출애굽 허브"></button>
+      <button class="hot event e3" onclick="goHub('sinai')" aria-label="시내산 허브"></button>
+      <button class="hot event e4" onclick="goHub('wilderness')" aria-label="광야훈련 허브"></button>
+      <button class="hot event e5" onclick="goHub('moab')" aria-label="모압평지 허브"></button>
+
+      <div class="btnGroup g1">
+        <button onclick="goHub('oppression')"><span class="bIcon">▥</span>애굽압제 허브</button>
+        <button onclick="openSheet('oppressionFlow')"><span class="bIcon">🤝</span>구원준비</button>
+      </div>
+      <div class="btnGroup g2">
+        <button onclick="goHub('exodus')"><span class="bIcon">🚶</span>출애굽 허브</button>
+        <button onclick="openSheet('lamb')"><span class="bIcon">🐑</span>어린양의 흐름</button>
+        <button onclick="openSheet('exodusFlow')"><span class="bIcon">⌖</span>연결탐험</button>
+      </div>
+      <div class="btnGroup g3 core">
+        <button onclick="goHub('sinai')"><span class="bIcon">⛰</span>시내산 허브</button>
+        <button onclick="openSheet('covenant')"><span class="bIcon">🤝</span>언약의 흐름</button>
+        <button onclick="openSheet('tabernacle')"><span class="bIcon">▥</span>성막의 흐름</button>
+        <button onclick="openSheet('priest')"><span class="bIcon">♟</span>제사장의 흐름</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+      </div>
+      <div class="btnGroup g4">
+        <button onclick="goHub('wilderness')"><span class="bIcon">🌿</span>광야훈련 허브</button>
+        <button onclick="openSheet('wildernessFlow')"><span class="bIcon">👣</span>광야의 흐름</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+      </div>
+      <div class="btnGroup g5">
+        <button onclick="goHub('moab')"><span class="bIcon">⛰</span>모압평지 허브</button>
+        <button onclick="openSheet('kingdom')"><span class="bIcon">♛</span>하나님나라의 흐름</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixedFooter" aria-label="출애굽·광야 하단 고정 메뉴">
+    <div class="flowBox">
+      <div class="flowTitle">출애굽·광야 핵심흐름</div>
+      <div class="flowItems">
+        <span>압제</span><b>›</b><span>출애굽</span><b>›</b><span>언약</span><b>›</b><span>광야</span><b>›</b><span>모압</span>
+      </div>
+    </div>
+    <div class="navGrid">
+      <button onclick="showToast('홈 연결 준비')"><i>⌂</i><span>홈</span></button>
+      <button onclick="showToast('전체 시대 Matrix 연결 준비')"><i>◎</i><span>전체</span></button>
+      <button onclick="openSheet('hubList')"><i>▣</i><span>허브</span></button>
+      <button onclick="showToast('족장시대 Matrix 연결 준비')"><i>‹</i><span>이전</span></button>
+      <button onclick="showToast('정복시대 Matrix 연결 준비')" class="next"><i>›</i><span>정복시대</span></button>
+    </div>
+  </nav>
+</div>
+
+<div class="sheetBack" id="backdrop"></div>
+<section class="sheet" id="sheet" aria-modal="true" role="dialog">
+  <div class="grab"></div><button class="close" id="close">×</button>
+  <h2 id="sheetTitle"></h2><div class="meta" id="sheetMeta"></div><p id="sheetBody"></p><div class="chips" id="chips"></div>
+</section>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
