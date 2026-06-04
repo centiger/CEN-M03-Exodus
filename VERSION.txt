@@ -1,2 +1,3 @@
-CEN Exodus-Wilderness Matrix v1.26
-- Oppression hub map and full 5-hub integration completed
+CEN Exodus-Wilderness Matrix v1.27
+- Hub map-first layout applied
+- Map descriptions moved below maps and normal weight
