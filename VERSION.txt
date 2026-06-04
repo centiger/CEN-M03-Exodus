@@ -1,3 +1,2 @@
-CEN Exodus-Wilderness Matrix v1.23
-- 광야훈련 허브 지도 PNG 교체 반영
-- 출애굽·광야 시대 매트릭스 허브 통합본 유지
+CEN Exodus-Wilderness Matrix v1.24
+- Moab Plains hub map and content integrated
