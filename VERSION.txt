@@ -1,1 +1,6 @@
-CEN Exodus-Wilderness Matrix v1.21
+CEN Patriarch Matrix v3 exodus-style drag limit
+- v3 hubs preserved
+- patriarch-main.png 848x1540 preserved
+- fixed footer with flowline and shadow preserved
+- main screen scroll constrained above fixed footer
+- cache version updated

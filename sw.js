@@ -1,5 +1,9 @@
-const CACHE='cen-exodus-wilderness-v121';
-const ASSETS=['./','./index.html','./style.css','./script.js','./manifest.webmanifest','./assets/exodus-wilderness-bg.png','./icons/icon-192.png','./icons/icon-512.png','./hubs/index.html','./hubs/js/app.js','./hubs/data/hubs.json'];
-self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).catch(()=>{}))});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('cen-exodus-wilderness-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
-self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy)).catch(()=>{});return r}).catch(()=>caches.match(e.request))));
+const CACHE_NAME='patriarch-matrix-20260604-v3-exodus-draglimit';
+self.addEventListener('install',event=>{self.skipWaiting();});
+self.addEventListener('activate',event=>{
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>k!==CACHE_NAME?caches.delete(k):null))).then(()=>self.clients.claim()));
+});
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET') return;
+  event.respondWith(fetch(event.request,{cache:'no-store'}).catch(()=>caches.match(event.request)));
+});
