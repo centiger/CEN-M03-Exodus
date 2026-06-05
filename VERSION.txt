@@ -1,3 +1,5 @@
-CEN Exodus-Wilderness Matrix v1.27
-- Hub map-first layout applied
-- Map descriptions moved below maps and normal weight
+CEN Exodus-Wilderness Matrix v1.28
+- Unified five hub symbols
+- Iconized hub list
+- Enhanced connection exploration sheets
+- Cache version updated

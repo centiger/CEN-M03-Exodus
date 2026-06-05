@@ -608,3 +608,6 @@ body {
   }
   .stage{margin-bottom:clamp(50px, 13.6vw, 78px) !important;}
 }
+
+/* v1.28: polished connection sheets */
+.sheet p{white-space:pre-line;}
