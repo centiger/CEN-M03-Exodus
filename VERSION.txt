@@ -1,2 +1,5 @@
-CEN Conquest Matrix - rebuilt using Exodus Matrix button/footer/drag reference
-2026-06-06 ref-exodus-1
+CEN Exodus-Wilderness Matrix v1.28
+- Unified five hub symbols
+- Iconized hub list
+- Enhanced connection exploration sheets
+- Cache version updated
