@@ -1,161 +1,20 @@
-(() => {
-  const viewport = document.getElementById('viewport');
-  const canvas = document.getElementById('canvas');
-  const dialog = document.getElementById('infoDialog');
-  const dialogTitle = document.getElementById('dialogTitle');
-  const dialogText = document.getElementById('dialogText');
-  const closeDialog = document.getElementById('closeDialog');
-
-  const base = { w: 846, h: 1858 };
-  const state = { scale: 1, minScale: 0.35, maxScale: 3.2, x: 0, y: 0 };
-  const pointers = new Map();
-  let pinchStart = null;
-  let fitScale = 1;
-
-  function clampPan() {
-    const vw = viewport.clientWidth;
-    const vh = viewport.clientHeight;
-    const sw = base.w * state.scale;
-    const sh = base.h * state.scale;
-    const xMargin = 80;
-
-    // 좌우는 약간의 여유를 두고 이동 허용
-    if (sw <= vw) state.x = (vw - sw) / 2;
-    else state.x = Math.min(xMargin, Math.max(vw - sw - xMargin, state.x));
-
-    // 세로는 아래로 끌어내리지 않게 제한하고, 위로만 이동
-    // 마지막 영역이 하단 고정 메뉴 위에서 멈추도록 과도한 하단 노출을 차단
-    if (sh <= vh) {
-      state.y = 0;
-    } else {
-      const minY = vh - sh + 12;
-      state.y = Math.min(0, Math.max(minY, state.y));
-    }
-  }
-
-  function apply() {
-    clampPan();
-    canvas.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) scale(${state.scale})`;
-  }
-
-  function fitView() {
-    const vw = viewport.clientWidth;
-    const vh = viewport.clientHeight;
-    state.minScale = Math.min(vw / base.w, vh / base.h) * 0.88;
-    fitScale = Math.max(vw / base.w, state.minScale);
-    state.scale = fitScale;
-    state.x = (vw - base.w * state.scale) / 2;
-    state.y = 0;
-    apply();
-  }
-
-  function zoomAt(clientX, clientY, nextScale) {
-    const rect = viewport.getBoundingClientRect();
-    const px = clientX - rect.left;
-    const py = clientY - rect.top;
-    const beforeX = (px - state.x) / state.scale;
-    const beforeY = (py - state.y) / state.scale;
-    state.scale = Math.min(state.maxScale, Math.max(state.minScale, nextScale));
-    state.x = px - beforeX * state.scale;
-    state.y = py - beforeY * state.scale;
-    apply();
-  }
-
-  function midpoint(a, b) { return { x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 }; }
-  function distance(a, b) { return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); }
-
-  function beginPinch() {
-    const [a, b] = [...pointers.values()];
-    const rect = viewport.getBoundingClientRect();
-    const mid = midpoint(a, b);
-    const px = mid.x - rect.left;
-    const py = mid.y - rect.top;
-    pinchStart = {
-      dist: distance(a, b),
-      scale: state.scale,
-      contentX: (px - state.x) / state.scale,
-      contentY: (py - state.y) / state.scale
-    };
-  }
-
-  viewport.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('button, a')) return;
-    e.preventDefault();
-    viewport.setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId, e);
-    viewport.classList.add('dragging');
-    if (pointers.size === 2) beginPinch();
-  });
-
-  viewport.addEventListener('pointermove', (e) => {
-    if (!pointers.has(e.pointerId)) return;
-    e.preventDefault();
-    const prev = pointers.get(e.pointerId);
-    pointers.set(e.pointerId, e);
-
-    if (pointers.size === 1 && !pinchStart) {
-      state.x += e.clientX - prev.clientX;
-      state.y += e.clientY - prev.clientY;
-      apply();
-      return;
-    }
-
-    if (pointers.size === 2 && pinchStart) {
-      const [a, b] = [...pointers.values()];
-      const rect = viewport.getBoundingClientRect();
-      const mid = midpoint(a, b);
-      const px = mid.x - rect.left;
-      const py = mid.y - rect.top;
-      const ratio = distance(a, b) / pinchStart.dist;
-      state.scale = Math.min(state.maxScale, Math.max(state.minScale, pinchStart.scale * ratio));
-      state.x = px - pinchStart.contentX * state.scale;
-      state.y = py - pinchStart.contentY * state.scale;
-      apply();
-    }
-  });
-
-  function endPointer(e) {
-    pointers.delete(e.pointerId);
-    if (pointers.size === 2) beginPinch();
-    else pinchStart = null;
-    if (pointers.size === 0) viewport.classList.remove('dragging');
-  }
-  viewport.addEventListener('pointerup', endPointer);
-  viewport.addEventListener('pointercancel', endPointer);
-
-  // 모바일 기본 조작감에 맞춰 더블탭 확대는 제거하고, 한 손가락 드래그 + 두 손가락 핀치만 사용한다.
-
-  document.querySelectorAll('.button-set button').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const group = btn.closest('.button-set');
-      const eventName = group.dataset.event;
-      const kind = btn.dataset.kind;
-      const label = kind === 'link' ? `${eventName} 연결탐험` : `${eventName} 통합탐험`;
-      dialogTitle.textContent = label;
-      dialogText.textContent = eventName === '요단강 도하'
-        ? '요단강 도하 허브가 먼저 통합되었습니다. 연결탐험과 통합탐험 상세창은 허브 표준 확정 후 연결합니다.'
-        : '해당 탐험은 다음 단계에서 실제 내용으로 연결합니다.';
-      dialog.showModal();
-    });
-  });
-
-  document.querySelectorAll('.footer button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const key = btn.dataset.footer;
-      if (key === 'hub') { location.href = 'hubs/index.html?hub=jordan'; return; }
-      const label = btn.textContent.trim();
-      dialogTitle.textContent = label;
-      dialogText.textContent = '이 메뉴의 실제 링크는 다음 단계에서 연결합니다.';
-      dialog.showModal();
-    });
-  });
-
-  closeDialog.addEventListener('click', () => dialog.close());
-  window.addEventListener('resize', fitView);
-  window.addEventListener('load', fitView);
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
-  }
-})();
+const DATA={
+  oppressionFlow:{title:'⛓ 구원 준비의 흐름',meta:'출 1-2장',body:'애굽의 압제는 실패한 역사가 아니라 출애굽을 준비하는 어두운 서막입니다. 하나님은 부르짖음을 들으시고, 모세를 보존하시며, 구원의 시간을 준비하십니다.',chips:['애굽압제','부르짖음','모세 출생','구원 준비']},
+  lamb:{title:'🐑 어린양의 흐름',meta:'출 12장 → 십자가',body:'유월절 어린양의 피는 심판을 넘어가게 하는 표지입니다. 이 흐름은 성막 제사와 예수 그리스도의 십자가, 성찬의 의미까지 이어집니다.',chips:['유월절','어린양','피','십자가','성찬']},
+  exodusFlow:{title:'🌊 출애굽의 흐름',meta:'출 12-15장',body:'하나님은 애굽의 권세에서 자기 백성을 건져 내시고, 홍해를 통해 구원의 길을 여십니다. 출애굽은 성경 전체 구원 사건의 원형입니다.',chips:['해방','홍해','구원','새 출발','새 출애굽']},
+  covenant:{title:'📜 언약의 흐름',meta:'출 19:5-6',body:'시내산에서 이스라엘은 단순한 탈출민이 아니라 하나님의 언약 백성으로 세워집니다. 이 흐름은 다윗언약과 새언약으로 확장됩니다.',chips:['시내산','십계명','언약 백성','거룩한 나라','새언약']},
+  tabernacle:{title:'⛺ 성막의 흐름',meta:'출 25-40장',body:'성막은 거룩하신 하나님이 백성 가운데 거하시는 임재의 구조입니다. 성막은 성전, 그리스도, 교회, 새 예루살렘으로 이어집니다.',chips:['임재','성막','성전','그리스도','새 예루살렘']},
+  priest:{title:'👑 제사장직의 흐름',meta:'출 28-29장',body:'제사장은 하나님과 백성 사이를 섬기는 중보적 직분입니다. 아론과 레위 제사장직의 흐름은 대제사장이신 그리스도께 이어집니다.',chips:['아론','레위','제사장','중보','그리스도']},
+  wildernessFlow:{title:'🍞 광야의 흐름',meta:'신 8:2',body:'광야는 실패의 장소만이 아니라 믿음과 순종을 배우는 훈련의 학교입니다. 만나와 반석의 물, 구름기둥과 불기둥은 하나님의 공급과 인도를 보여줍니다.',chips:['만나','반석의 물','구름기둥','불기둥','순종']},
+  kingdom:{title:'⛰ 하나님 나라의 흐름',meta:'신명기 → 정복시대',body:'모압평지는 약속의 땅 입성을 앞둔 자리입니다. 언약 백성이 땅에서 어떻게 살아야 하는지 다시 듣고, 정복시대로 넘어갑니다.',chips:['모압','율법 재확인','여호수아','가나안','정복시대']},
+  connection:{title:'⌖ 출애굽·광야 연결탐험',meta:'핵심 연결축',body:'출애굽·광야 시대는 어린양, 출애굽, 언약, 성막, 제사장, 광야, 하나님 나라의 흐름이 동시에 시작·확장되는 핵심 구간입니다.',chips:['어린양','출애굽','언약','성막','제사장','광야','하나님 나라']},
+  hubList:{title:'출애굽·광야 허브 목록',meta:'5개 허브',body:'⛓ 애굽압제 → 🐑 출애굽 → 📜 시내산 → 🍞 광야훈련 → ⛰ 모압평지 순서로 탐험합니다.',chips:['⛓ 애굽압제','🐑 출애굽','📜 시내산','🍞 광야훈련','⛰ 모압평지']}
+};
+const sheet=document.getElementById('sheet'),backdrop=document.getElementById('backdrop'),title=document.getElementById('sheetTitle'),meta=document.getElementById('sheetMeta'),body=document.getElementById('sheetBody'),chips=document.getElementById('chips'),toast=document.getElementById('toast');
+function goHub(id){location.href='./hubs/index.html?hub='+encodeURIComponent(id)}
+function openSheet(key){const d=DATA[key]||DATA.hubList;title.textContent=d.title;meta.textContent=d.meta;body.textContent=d.body;chips.innerHTML=d.chips.map(c=>`<span class="chip">${c}</span>`).join('');sheet.classList.add('show');backdrop.classList.add('show')}
+function closeSheet(){sheet.classList.remove('show');backdrop.classList.remove('show')}
+document.getElementById('close').onclick=closeSheet;backdrop.onclick=closeSheet;
+function showToast(t){toast.textContent=t;toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>toast.classList.remove('show'),1300)}
+if(new URLSearchParams(location.search).get('debug')==='1'){document.querySelectorAll('.hot').forEach(el=>el.classList.add('debug'))}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
