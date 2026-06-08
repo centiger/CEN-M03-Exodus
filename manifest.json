@@ -1,1 +1,13 @@
-{"name":"출애굽·광야 Matrix","short_name":"Exodus Matrix","start_url":"./index.html","display":"standalone","background_color":"#071017","theme_color":"#071017","orientation":"portrait","icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "CEN Bible 정복시대 Matrix",
+  "short_name": "정복 Matrix",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0a06",
+  "theme_color": "#171009",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
