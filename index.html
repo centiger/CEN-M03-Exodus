@@ -8,6 +8,18 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png"/>
 <meta name="theme-color" content="#071017"/>
 <link rel="stylesheet" href="style.css"/>
+
+<style id="CEN-UNIFIED-FOOTER-V5-CSS">
+body{padding-bottom:92px!important}
+.unifiedDock{position:fixed!important;left:50%!important;bottom:0!important;transform:translateX(-50%)!important;width:100%!important;max-width:560px!important;z-index:3000!important;padding:5px 10px calc(7px + env(safe-area-inset-bottom))!important;background:linear-gradient(to top,rgba(4,8,12,.98),rgba(9,18,26,.92))!important;border-top:1px solid rgba(247,216,137,.24)!important;box-shadow:0 -10px 24px rgba(0,0,0,.42)!important;backdrop-filter:blur(16px)!important;display:block!important;min-height:auto!important}
+.unifiedDock .coreFlow{margin:0 0 4px!important;text-align:center!important;color:#f7d889!important;font-weight:900!important;line-height:1.18!important;font-size:clamp(10px,2.65vw,14px)!important;letter-spacing:-.055em!important;text-shadow:0 2px 6px rgba(0,0,0,.85)!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+.unifiedDock .coreFlow small{display:block!important;margin-bottom:1px!important;color:#d7b565!important;font-size:clamp(7px,1.9vw,10px)!important;font-weight:800!important;letter-spacing:-.03em!important;opacity:.95!important}
+.unifiedDock .unifiedNav{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:5px!important;width:100%!important;margin:0!important;padding:0!important}
+.unifiedDock .action{min-height:34px!important;border:1.2px solid rgba(247,216,137,.42)!important;border-radius:10px!important;background:linear-gradient(180deg,rgba(18,28,36,.92),rgba(8,15,22,.9))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 5px 12px rgba(0,0,0,.30)!important;color:#fff4d8!important;text-decoration:none!important;font-size:clamp(10px,2.55vw,13px)!important;font-weight:950!important;display:flex!important;align-items:center!important;justify-content:center!important;line-height:1.0!important;text-align:center!important;letter-spacing:-.06em!important;text-shadow:0 2px 5px rgba(0,0,0,.75)!important;padding:0 2px!important;cursor:pointer!important}
+.unifiedDock .action.main,.unifiedDock .action[data-link="hub"],.unifiedDock .action[data-footer="hub"]{background:linear-gradient(180deg,#d49a22,#9b660d)!important;border-color:rgba(255,224,142,.82)!important;color:#fff8e6!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 5px 13px rgba(0,0,0,.34)!important}
+@media(min-width:680px){.unifiedDock{border-radius:24px 24px 0 0!important}}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -33,24 +45,24 @@
       <div class="btnGroup g2">
         <button onclick="goHub('exodus')"><span class="bIcon">🐑</span>출애굽 허브</button>
         <button onclick="openSheet('lamb')"><span class="bIcon">🐑</span>어린양의 흐름</button>
-        <button onclick="openSheet('exodusFlow')"><span class="bIcon">⌖</span>연결탐험</button>
+        <button onclick="openSheet('exodusFlow')"><span class="bIcon">⌖</span>주제탐험</button>
       </div>
       <div class="btnGroup g3 core">
         <button onclick="goHub('sinai')"><span class="bIcon">📜</span>시내산 허브</button>
         <button onclick="openSheet('covenant')"><span class="bIcon">🤝</span>언약의 흐름</button>
         <button onclick="openSheet('tabernacle')"><span class="bIcon">▥</span>성막의 흐름</button>
         <button onclick="openSheet('priest')"><span class="bIcon">♟</span>제사장의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>주제탐험</button>
       </div>
       <div class="btnGroup g4">
         <button onclick="goHub('wilderness')"><span class="bIcon">🍞</span>광야훈련 허브</button>
         <button onclick="openSheet('wildernessFlow')"><span class="bIcon">👣</span>광야의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>주제탐험</button>
       </div>
       <div class="btnGroup g5">
         <button onclick="goHub('moab')"><span class="bIcon">⛰</span>모압평지 허브</button>
         <button onclick="openSheet('kingdom')"><span class="bIcon">♛</span>하나님나라의 흐름</button>
-        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>연결탐험</button>
+        <button onclick="openSheet('connection')"><span class="bIcon">⌖</span>주제탐험</button>
       </div>
     </section>
   </main>
@@ -80,5 +92,25 @@
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
+
+<script id="CEN-UNIFIED-FOOTER-V5-LINKS">
+(function(){
+  const links={
+    timeline:'https://centiger.github.io/CEN-Chronology/?view=timeline',
+    connect:'https://centiger.github.io/CEN-Chronology/',
+    overview:'https://centiger.github.io/CEN-Bible2.0/#overview66'
+  };
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest && e.target.closest('.unifiedDock .action');
+    if(!btn) return;
+    const key=btn.dataset.link || btn.dataset.footer || '';
+    if(key==='timeline'||key==='connect'||key==='overview'){
+      e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+      location.href=links[key];
+    }
+  },true);
+})();
+</script>
+
 </body>
 </html>
