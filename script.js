@@ -12,7 +12,23 @@ const DATA={
 };
 const sheet=document.getElementById('sheet'),backdrop=document.getElementById('backdrop'),title=document.getElementById('sheetTitle'),meta=document.getElementById('sheetMeta'),body=document.getElementById('sheetBody'),chips=document.getElementById('chips'),toast=document.getElementById('toast');
 function goHub(id){location.href='./hubs/index.html?hub='+encodeURIComponent(id)}
-function openSheet(key){const d=DATA[key]||DATA.hubList;title.textContent=d.title;meta.textContent=d.meta;body.textContent=d.body;chips.innerHTML=d.chips.map(c=>`<span class="chip">${c}</span>`).join('');sheet.classList.add('show');backdrop.classList.add('show')}
+const HUB_LINKS=[
+  ['oppression','⛓ 애굽압제'],
+  ['exodus','🐑 출애굽'],
+  ['sinai','📜 시내산'],
+  ['wilderness','🍞 광야훈련'],
+  ['moab','⛰ 모압평지']
+];
+function openSheet(key){
+  const d=DATA[key]||DATA.hubList;
+  title.textContent=d.title;meta.textContent=d.meta;body.textContent=d.body;
+  if(key==='hubList'){
+    chips.innerHTML=HUB_LINKS.map(([id,label])=>`<button class="chip chipBtn" onclick="goHub('${id}')">${label}</button>`).join('');
+  }else{
+    chips.innerHTML=d.chips.map(c=>`<span class="chip">${c}</span>`).join('');
+  }
+  sheet.classList.add('show');backdrop.classList.add('show')
+}
 function closeSheet(){sheet.classList.remove('show');backdrop.classList.remove('show')}
 document.getElementById('close').onclick=closeSheet;backdrop.onclick=closeSheet;
 function showToast(t){toast.textContent=t;toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>toast.classList.remove('show'),1300)}
