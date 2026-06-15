@@ -134,6 +134,12 @@ body{padding-bottom:92px!important}
     if(key==='timeline'||key==='connect'||key==='overview'){
       e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
       location.href=links[key];
+      return;
+    }
+    if(key==='hub'){
+      e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+      if(typeof openSheet==='function') openSheet('hubList');
+      return;
     }
   },true);
 })();
