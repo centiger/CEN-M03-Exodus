@@ -38,34 +38,31 @@ body{padding-bottom:92px!important}
 .unifiedDock .action[data-link="overview"]{letter-spacing:-.07em!important;}
 </style>
 
-<style id="CEN-M03-HUB-SHEET-ABOVE-FOOTER-FIX">
-/* 하단 통합 네비게이터 때문에 허브목록 팝업 하단이 가려지는 문제 수정 */
-#backdrop.sheetBack{
-  z-index:2500!important;
-}
-#sheet.sheet{
+
+<style id="CEN-M03-SHEET-ABOVE-FOOTER-V6">
+/* v6: 출애굽·광야 허브목록 팝업을 하단 네비게이터 위에서 열기 */
+.sheet{
   bottom:calc(92px + env(safe-area-inset-bottom))!important;
-  z-index:3200!important;
   max-height:calc(100svh - 132px - env(safe-area-inset-bottom))!important;
-  overflow-y:auto!important;
-  border-bottom:1px solid rgba(245,199,107,.30)!important;
-  border-radius:24px!important;
-  padding-bottom:18px!important;
-}
-#sheet.sheet.show{
-  transform:translate(-50%,0)!important;
-}
-#sheet.sheet:not(.show){
   transform:translate(-50%,120%)!important;
+  padding:14px 18px 18px!important;
+  border-bottom:1px solid rgba(245,199,107,.30)!important;
+  border-radius:22px!important;
+  z-index:3100!important;
 }
-#sheet .chips{
-  padding-bottom:6px!important;
-}
-#sheet .chipBtn{
-  cursor:pointer!important;
+.sheet.show{transform:translate(-50%,0)!important;}
+.sheetBack{z-index:2500!important;}
+.sheet h2{font-size:clamp(22px,6vw,30px)!important;line-height:1.15!important;}
+.sheet .meta{font-size:clamp(13px,3.5vw,17px)!important;margin-bottom:10px!important;}
+.sheet p{font-size:clamp(13px,3.5vw,16px)!important;line-height:1.45!important;margin-bottom:10px!important;}
+.chips{max-height:28svh!important;overflow-y:auto!important;padding-bottom:4px!important;}
+.chip{font-size:clamp(12px,3.2vw,15px)!important;padding:7px 10px!important;}
+@media(max-height:720px){
+  .sheet{max-height:56svh!important;padding-top:12px!important;}
+  .chips{max-height:20svh!important;}
+  .grab{margin-bottom:10px!important;}
 }
 </style>
-
 </head>
 <body>
 <div class="app">
