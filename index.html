@@ -37,6 +37,35 @@ body{padding-bottom:92px!important}
 .unifiedDock .coreFlow{margin-bottom:4px!important;}
 .unifiedDock .action[data-link="overview"]{letter-spacing:-.07em!important;}
 </style>
+
+<style id="CEN-M03-HUB-SHEET-ABOVE-FOOTER-FIX">
+/* 하단 통합 네비게이터 때문에 허브목록 팝업 하단이 가려지는 문제 수정 */
+#backdrop.sheetBack{
+  z-index:2500!important;
+}
+#sheet.sheet{
+  bottom:calc(92px + env(safe-area-inset-bottom))!important;
+  z-index:3200!important;
+  max-height:calc(100svh - 132px - env(safe-area-inset-bottom))!important;
+  overflow-y:auto!important;
+  border-bottom:1px solid rgba(245,199,107,.30)!important;
+  border-radius:24px!important;
+  padding-bottom:18px!important;
+}
+#sheet.sheet.show{
+  transform:translate(-50%,0)!important;
+}
+#sheet.sheet:not(.show){
+  transform:translate(-50%,120%)!important;
+}
+#sheet .chips{
+  padding-bottom:6px!important;
+}
+#sheet .chipBtn{
+  cursor:pointer!important;
+}
+</style>
+
 </head>
 <body>
 <div class="app">
