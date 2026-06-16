@@ -219,8 +219,8 @@
         "hub": "wilderness"
       },
       "next": {
-        "label": "다음: 정복시대 Matrix",
-        "url": "../index.html"
+        "label": "정복시대 Matrix로 이동",
+        "url": "https://centiger.github.io/CEN-M04-Conquest/"
       },
       "icon": "⛰"
     }
