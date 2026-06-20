@@ -49,4 +49,19 @@ fetch('data/hubs.json').then(r=>r.json()).then(data=>{
   document.getElementById('message').textContent=h.message;
   document.getElementById('nextBtn').textContent=h.next?.label||'다음 허브';
   document.getElementById('nextBtn').onclick=()=>nav(h.next);
+
+  // 해시 이동 보정: 데이터 렌더링 후 Meaning/파노라마 제목이 보이도록 이동
+  if(location.hash){
+    const targetId=location.hash.replace('#','');
+    const target=document.getElementById(targetId);
+    if(target){
+      const scrollToTarget=()=>{
+        const offset=90;
+        const top=target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({top:Math.max(0,top),behavior:'auto'});
+      };
+      setTimeout(scrollToTarget,80);
+      setTimeout(scrollToTarget,350);
+    }
+  }
 });
