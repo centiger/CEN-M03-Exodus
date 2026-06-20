@@ -43,8 +43,8 @@ fetch('data/hubs.json').then(r=>r.json()).then(data=>{
   document.getElementById('verse').textContent=h.verse;
   document.getElementById('events').innerHTML=li(h.events);
   document.getElementById('meaning').innerHTML=li(h.meaning);
-  document.getElementById('connections').innerHTML=explore(h.connections);
-  document.getElementById('integration').innerHTML=explore(h.integration||h.integrated);
+  document.getElementById('connectionsList').innerHTML=explore(h.connections);
+  document.getElementById('integrationList').innerHTML=explore(h.integration||h.integrated);
   document.getElementById('refs').innerHTML=li(h.refs);
   document.getElementById('message').textContent=h.message;
   document.getElementById('nextBtn').textContent=h.next?.label||'다음 허브';
