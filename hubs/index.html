@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
 <title>출애굽·광야 허브</title>
 <link rel="stylesheet" href="style.css"/>
-<style>.exploreCard b{display:block;margin-bottom:10px}.exploreCard p{white-space:normal;line-height:1.75}.flowArrow{display:block;color:#f7d889;font-weight:900}.flowLine{display:block}</style></head>
+<style>.exploreCard b{display:block;margin-bottom:10px}.exploreCard p{white-space:normal;line-height:1.75}.flowArrow{display:block;color:#f7d889;font-weight:900}.flowLine{display:block}</style>
+<style id='hash-fix'>#connections,#integration{scroll-margin-top:90px;}</style>
+</head>
 <body>
 <div class="wrap">
   <header class="top">
@@ -26,8 +28,8 @@
     <article class="card"><h2>대표성구</h2><div class="verse" id="verse"></div></article>
     <article class="card"><h2>핵심사건</h2><ul id="events"></ul></article>
     <article class="card"><h2>핵심의미</h2><ul id="meaning"></ul></article>
-    <article class="card"><h2>Meaning</h2><div class="exploreGrid" id="connections"></div></article>
-    <article class="card"><h2>파노라마</h2><div class="exploreGrid" id="integration"></div></article>
+    <article class="card" id="connections"><h2>Meaning</h2><div class="exploreGrid" id="connectionsList"></div></article>
+    <article class="card" id="integration"><h2>파노라마</h2><div class="exploreGrid" id="integrationList"></div></article>
     <article class="card"><h2>관련성경</h2><ul id="refs"></ul></article>
     <article class="card message"><h2>핵심메시지</h2><p id="message"></p></article>
   </section>
