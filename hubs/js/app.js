@@ -5,38 +5,45 @@ function explore(arr){
 function iconForStep(t){
 t=String(t||'');
 
-// M03 출애굽·광야시대 흐름 상징 확장
+// M03 hubs.json 흐름 문구에는 이미 이모티가 들어가 있음.
+// 이미 이모티가 있는 단계에는 추가 이모티를 붙이지 않음.
+if(/\p{Extended_Pictographic}/u.test(t)) return '';
+
+// 혹시 이모티가 빠진 흐름 문구가 들어올 경우를 위한 보조 매핑
 if(/압제|고난|노예|탄압|박해/.test(t)) return '⛓️';
-if(/모세|소명|부르심|떨기나무|불붙은/.test(t)) return '🔥';
-if(/아론/.test(t)) return '🗣️';
+if(/요셉/.test(t)) return '🌾';
+if(/애굽정착/.test(t)) return '🏺';
+if(/민족번성|번성/.test(t)) return '👥';
+if(/모세/.test(t)) return '👶';
 if(/바로|파라오/.test(t)) return '👑';
 if(/열\s*재앙|재앙/.test(t)) return '⚡';
 if(/유월절|어린양|피/.test(t)) return '🐑';
-if(/출애굽|애굽|홍해|바다/.test(t)) return '🌊';
-if(/구름기둥|불기둥|인도/.test(t)) return '☁️';
+if(/출애굽|홍해|바다/.test(t)) return '🌊';
 if(/광야|방황|40년|사십/.test(t)) return '🏜️';
 if(/만나|메추라기|양식/.test(t)) return '🍞';
 if(/반석|물/.test(t)) return '💧';
-if(/시내산|산/.test(t)) return '⛰️';
-if(/십계명|계명/.test(t)) return '🔟';
-if(/율법|언약|말씀/.test(t)) return '📜';
-if(/금송아지|우상/.test(t)) return '🐂';
-if(/성막|회막|임재/.test(t)) return '⛺';
-if(/제사|제사장|레위/.test(t)) return '🕯️';
-if(/불순종|원망|반역/.test(t)) return '😣';
 if(/정탐|가데스|두려움/.test(t)) return '👀';
-if(/놋뱀|뱀/.test(t)) return '🐍';
-if(/모압|요단/.test(t)) return '🏕️';
+if(/불순종|원망|반역/.test(t)) return '😣';
+if(/시내산|산/.test(t)) return '⛰️';
+if(/십계명|계명|율법|언약|말씀|신명기|언약갱신/.test(t)) return '📜';
+if(/성막|회막|임재/.test(t)) return '⛺';
+if(/성전|새 예루살렘/.test(t)) return '🏰';
+if(/제사|제사장|레위/.test(t)) return '🕯️';
+if(/교회/.test(t)) return '⛪';
 if(/여호수아|후계|계승/.test(t)) return '🛡️';
 if(/가나안|약속의 땅|약속의땅/.test(t)) return '🏞️';
-if(/예수|그리스도|복음|구원/.test(t)) return '✝️';
+if(/아브라함/.test(t)) return '🐪';
+if(/다윗/.test(t)) return '👑';
+if(/생명의 떡/.test(t)) return '🍞';
+if(/영원한 생명/.test(t)) return '✨';
+if(/예수|그리스도|십자가|복음|구원/.test(t)) return '✝️';
 
 return '📌';
 }
 function flowHtml(text){
  const parts=String(text||'').split(/\s*→\s*/).map(v=>v.trim()).filter(Boolean);
  if(parts.length<2) return text.replace(/\n/g,'<br>');
- return parts.map((s,i)=>`<span class="flowLine">${iconForStep(s)} ${s}</span>${i<parts.length-1?'<span class="flowArrow">↓</span>':''}`).join('');
+ return parts.map((s,i)=>{const icon=iconForStep(s);return `<span class="flowLine">${icon?icon+' ':''}${s}</span>${i<parts.length-1?'<span class="flowArrow">↓</span>':''}`}).join('');
 }
 return (arr||[]).map(x=>{
  let title='',text='';
