@@ -1,4 +1,56 @@
 let DATA;
+const CEN_BIBLE_URL='https://centiger.github.io/CEN-Bible2.0/';
+
+function escapeHtml(value){
+  return String(value ?? '').replace(/[&<>"]/g,ch=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'
+  }[ch]));
+}
+
+function normalizeCenBibleRef(value){
+  let ref=String(value||'').trim().replace(/\s+/g,' ');
+  if(!ref) return '';
+
+  // 장 범위: 출애굽기 1-2장 / 3~15장 → 시작 장 1절
+  let m=ref.match(/^(.+?)\s*(\d+)\s*[~～\-–—]\s*\d+\s*장$/);
+  if(m) return `${m[1].trim()} ${m[2]}:1`;
+
+  // 장만 표시: 출애굽기 3장 → 출애굽기 3:1
+  m=ref.match(/^(.+?)\s*(\d+)\s*장$/);
+  if(m) return `${m[1].trim()} ${m[2]}:1`;
+
+  // 절 범위: 출애굽기 12:13-14 → 출애굽기 12:13
+  m=ref.match(/^(.+?)\s*(\d+)\s*:\s*(\d+)\s*[~～\-–—]\s*\d+$/);
+  if(m) return `${m[1].trim()} ${m[2]}:${m[3]}`;
+
+  // 장 표기 생략: 출애굽기 3 → 출애굽기 3:1
+  m=ref.match(/^(.+?)\s+(\d+)$/);
+  if(m) return `${m[1].trim()} ${m[2]}:1`;
+
+  return ref.replace(/\s*:\s*/g,':');
+}
+
+function cenBibleUrl(ref){
+  return `${CEN_BIBLE_URL}?ref=${encodeURIComponent(normalizeCenBibleRef(ref))}`;
+}
+
+function bibleLinkHtml(label,className=''){
+  const text=String(label||'').trim();
+  if(!text) return '';
+  return `<a class="bibleLink ${className}" href="${escapeHtml(cenBibleUrl(text))}" aria-label="CEN Bible 2.0에서 ${escapeHtml(text)} 열기">${escapeHtml(text)}</a>`;
+}
+
+function renderVerseHtml(value){
+  const text=String(value||'');
+  // 대표성구 끝의 '— 출애굽기 2:24' 부분만 링크 처리
+  const m=text.match(/^(.*?)(\s*[—–-]\s*)([가-힣]+(?:\s?[가-힣]+)*\s*\d+\s*:\s*\d+(?:\s*[~～\-–—]\s*\d+)?)\s*$/);
+  if(!m) return escapeHtml(text);
+  return `${escapeHtml(m[1])}${escapeHtml(m[2])}${bibleLinkHtml(m[3],'verseRef')}`;
+}
+
+function bibleList(arr){
+  return (arr||[]).map(ref=>`<li>${bibleLinkHtml(ref,'refLink')}</li>`).join('');
+}
 function qs(k){return new URLSearchParams(location.search).get(k)}
 function li(arr){return (arr||[]).map(x=>`<li>${x}</li>`).join('')}
 function explore(arr){
@@ -68,12 +120,12 @@ fetch('data/hubs.json').then(r=>r.json()).then(data=>{
   document.getElementById('theme').textContent=h.theme;
   document.getElementById('mapText').textContent=h.mapText;
   document.getElementById('map').src=h.map;
-  document.getElementById('verse').textContent=h.verse;
+  document.getElementById('verse').innerHTML=renderVerseHtml(h.verse);
   document.getElementById('events').innerHTML=li(h.events);
   document.getElementById('meaning').innerHTML=li(h.meaning);
   document.getElementById('connectionsList').innerHTML=explore(h.connections);
   document.getElementById('integrationList').innerHTML=explore(h.integration||h.integrated);
-  document.getElementById('refs').innerHTML=li(h.refs);
+  document.getElementById('refs').innerHTML=bibleList(h.refs);
   document.getElementById('message').textContent=h.message;
   document.getElementById('nextBtn').textContent=h.next?.label||'다음 허브';
   document.getElementById('nextBtn').onclick=()=>nav(h.next);
